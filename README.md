@@ -1,2 +1,2 @@
 # GraphicalExtremesForest
-Forest estimation for multivariate extremes structure
+Forest structure estimation for multivariate extremes 
