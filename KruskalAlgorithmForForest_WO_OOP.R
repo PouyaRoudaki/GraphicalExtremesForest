@@ -161,7 +161,7 @@ KruskalMSF <- function( graph_df , max_edge = d , threshold = Inf)
     
   }
   
-  print(paste("Minimum spanning tree cost: ",minimumCost))
+  print(paste("Minimum spanning forest cost: ",minimumCost))
   
   for (k in 1:dim(result)[1]) { # making the empirical adjacency matrix
     

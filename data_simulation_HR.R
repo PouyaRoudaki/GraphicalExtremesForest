@@ -1,4 +1,6 @@
-forest_HR_simulation <- function(forest_structure_list, n, p=0, k=NULL){
+data_simulation_HR <- function(forest_structure_list, n){
+  forest_structure_list <- forest_str_lst
+  
   
   ####### required packages:
   
@@ -17,7 +19,7 @@ forest_HR_simulation <- function(forest_structure_list, n, p=0, k=NULL){
   ################################################################################
   ###########  list of adjacency matrices corresponds to each tree  ##############
   ################################################################################
-
+  
   
   forest_structure_list
   
@@ -117,61 +119,5 @@ forest_HR_simulation <- function(forest_structure_list, n, p=0, k=NULL){
   
   # merge data of trees together
   Simulated_data <- do.call(cbind,trees_data_list)
-  
-  ########################################################  Does it work for univariate case?????? if yes we don't need those if
-  #rmstable_tree(n, "HR", tree = graph_from_adjacency_matrix(matrix(0),
-  #                                                          mode = "undirected"), par = matrix(0))
-  
-  
-  ################################################################################
-  ################# Empirical estimation for variogram and Chi_matrix ############
-  ################################################################################
-  
-  
-  #p <- 0.9 #??? What is this p is at an argument how we can set this p?
-  
-  emp_chi_mat <- emp_chi(Simulated_data, p) ######### I expect emp_chi_multdim() works but emp_chi() works here why?
-  emp_chi_mat  ### why it's so good it doesn't have decimals????!!!!!
-  
-  ################################################################################
-  
-  emp_vario_mat <- emp_vario(Simulated_data, k=NULL, p) ######## what is the good k???????????????????????????
-  emp_vario_mat                               
-  
-  
-  ################################################################################
-  ################## Graph of Empirical estimations in dataframe format ##########
-  ################################################################################
-  
-  emp_chi_graph_df <- data.frame( FirstVertice = numeric(),  # store resultant MSF in the dataframe format each row: each edge's vertices with its weight
-                                  SecondVertice = numeric(), 
-                                  weight = numeric(), 
-                                  stringsAsFactors=FALSE)  
-  
-  emp_vario_graph_df <- data.frame( FirstVertice = numeric(),  # store resultant MSF in the dataframe format each row: each edge's vertices with its weight
-                                    SecondVertice = numeric(), 
-                                    weight = numeric(), 
-                                    stringsAsFactors=FALSE) 
-  
-  e <- 1
-  
-  for (i in (1:(d-1))) {                                           
-    for (j in ((i+1):d)) {
-      
-      emp_chi_graph_df[e,1] <- i
-      emp_vario_graph_df[e,1] <- i
-      
-      emp_chi_graph_df[e,2] <- j
-      emp_vario_graph_df[e,2] <- j
-      
-      emp_chi_graph_df[e,3] <- emp_chi_mat[i,j]
-      emp_vario_graph_df[e,3] <- emp_vario_mat[i,j]  
-      
-      e <- e + 1
-    }
-  }
-  
-  
-  empirical_est_graphdf_list <- list(emp_chi_graph_df,emp_vario_graph_df)
-  return(empirical_est_graphdf_list)
+  return(Simulated_data)
 }

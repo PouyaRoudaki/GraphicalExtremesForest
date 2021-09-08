@@ -1,3 +1,6 @@
+
+#scissors_maker(d = 10, type = "scc",min_scc = 5,max_scc = 5)
+
 scissors_maker <- function(d, type="ncc", ncc = NULL, max_scc=d, min_scc=1, seed = NULL){
   
   ##############################################################################
@@ -14,14 +17,22 @@ scissors_maker <- function(d, type="ncc", ncc = NULL, max_scc=d, min_scc=1, seed
   
   
   ### Conditions for making the scissors
+  stopifnot(d >= 1)
+  stopifnot((1 <= ncc) & (ncc <= d))
+  stopifnot((1 <= max_scc) & (max_scc <= d))
+  stopifnot(((1 <= min_scc) & (min_scc <= d/2))| (min_scc == d) )
+  stopifnot(min_scc <= max_scc)
   
-  
-  
+  if (min_scc == max_scc){
+    stopifnot( d %% min_scc == 0)
+  }
+  ##############################################################################
+  ##############################################################################
   
   if(is.null(seed)){
     seed <- sample.int(1000000,1)
   }
-
+  print(paste0("seed =",seed))
   set.seed(seed)
   
   if(type == "ncc"){                                              # Based on number of connected components
@@ -38,9 +49,15 @@ scissors_maker <- function(d, type="ncc", ncc = NULL, max_scc=d, min_scc=1, seed
     #avg_length <- vector()
     #sizes <- vector(mode = "numeric",length = d)
     
-    if(max_scc == 1){                                # It's a spanning tree
+    if(max_scc == 1 | min_scc == d){                                # It's a spanning tree
       
-      scissors <- c(1:d)
+      if(max_scc == 1){
+        scissors <- c(1:d)
+      }
+      
+      if(min_scc == d){
+        scissors <- integer()
+      }
       
     }else{
     
@@ -131,4 +148,4 @@ scissors_maker <- function(d, type="ncc", ncc = NULL, max_scc=d, min_scc=1, seed
 ### 3 and 6 is okay
 ### 4 and 7 is okay
 
-
+#scissors_maker(d=10,type = "scc",max_scc = 5,min_scc = 4)
