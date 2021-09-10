@@ -1,5 +1,5 @@
 
-#scissors_maker(d = 10, type = "scc",min_scc = 5,max_scc = 5)
+#scissors_maker(d = 10, type = "scc",max_scc = 1)
 
 scissors_maker <- function(d, type="ncc", ncc = NULL, max_scc=d, min_scc=1, seed = NULL){
   
@@ -32,7 +32,7 @@ scissors_maker <- function(d, type="ncc", ncc = NULL, max_scc=d, min_scc=1, seed
   if(is.null(seed)){
     seed <- sample.int(1000000,1)
   }
-  print(paste0("seed =",seed))
+  #print(paste0("seed =",seed))
   set.seed(seed)
   
   if(type == "ncc"){                                              # Based on number of connected components
@@ -52,7 +52,7 @@ scissors_maker <- function(d, type="ncc", ncc = NULL, max_scc=d, min_scc=1, seed
     if(max_scc == 1 | min_scc == d){                                # It's a spanning tree
       
       if(max_scc == 1){
-        scissors <- c(1:d)
+        scissors <- c(1:(d-1))
       }
       
       if(min_scc == d){
@@ -62,32 +62,20 @@ scissors_maker <- function(d, type="ncc", ncc = NULL, max_scc=d, min_scc=1, seed
     }else{
     
       unacceptable_last_scissor <- T
+      counter_effort<-0
       while (unacceptable_last_scissor){
-        
         #total<-0
         scissors <- vector()
-        
-        ###$$$
-        #d<-10
-        #min_scc<-3
-        #max_scc<-5
-        ###$$$
+
         
         start_interval <- min_scc
         end_interval <- max_scc
         
         continue_decision <- T
         
-        
-        
         while (continue_decision) {                 # do it until you have the decision to continue splitting the sequence
           
           scissor <- sample(x = start_interval:end_interval,size = 1)
-          
-          ###$$$
-          #scissor <- 6
-          ###$$$
-          
           #print(paste("scissor:",scissor))
           
           if(scissor > d-min_scc){                         # the scissor shouldn't be equal or larger than d
@@ -125,8 +113,12 @@ scissors_maker <- function(d, type="ncc", ncc = NULL, max_scc=d, min_scc=1, seed
          
        }
         
-
-         
+       counter_effort<- counter_effort+1
+       if(counter_effort>1000000){
+         stop("Error: scissors_maker_function tried more than 1M times to find a
+              way to make this forest but it seems impossible! Please change the arguments")
+       }
+          
       }
       
     }

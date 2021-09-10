@@ -3,10 +3,10 @@
 ################################################################################
 ####################  initial values for prospective function ##################
 ################################################################################
-#generate_random_forest(10,type = "scc",max_scc = 6,min_scc = 2,seed = 15)
+#generate_random_forest(14,type = "scc",max_scc = 6,min_scc = 5)
 setwd("C:/Users/pouya/Desktop/UNIGE/GSEM/Fall2021/Master Thesis/Codes")
 
-#generate_random_forest(10,"scc",max_scc = 5,min_scc = 3)
+#generate_random_forest(10,"scc",max_scc = 4)
 generate_random_forest <- function(d, type="ncc", ncc = NULL,max_scc = d, min_scc = 1,seed=NULL){  # d : number of vertices # 
   
   
