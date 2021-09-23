@@ -3,19 +3,19 @@ require(graphicalExtremes)
 
 forestSimulationHR <- function(forestStructureList, n, p=0, k=NULL){
   
-  #' @author Pouya Roudaki
-  #' @description Data Simulation for the forest with Huesler-Riess distribution 
-  #' @param forestStructureList a list corresponding to the forest structure in 
-  #' which we can find "d", "ncc", "CC" and also "adj" matrix.
-  #' @param n number of observations in simulated data
-  #' @param p exceedance probability threshold for extreme values
-  #' @param k for lamba^{k} (product space matters) k=NULL overall average. 
-  #' @return dataframe of weights on the edges base on extremal Chi and extremal
-  #' Variogram(Gamma) 
-  #' @example forestSimulationHR(forestStrLst,n = 10000 , p =0.9)
+#' @author Pouya Roudaki
+#' @description Data Simulation for the forest with Huesler-Riess distribution 
+#' @param forestStructureList a list corresponding to the forest structure in 
+#' which we can find "d", "ncc", "CC" and also "adj" matrix.
+#' @param n number of observations in simulated data
+#' @param p exceedance probability threshold for extreme values
+#' @param k for lamba^{k} (product space matters) k=NULL overall average. 
+#' @return dataframe of weights on the edges base on extremal Chi and extremal
+#' Variogram(Gamma) 
+#' @example forestSimulationHR(forestStrLst,n = 10000 , p =0.9)
   
   #' Simulated dataset
-  simulatedData <- data_simulation_HR(forestStructureList,n = n)
+  simulatedData <- dataSimulationHR(forestStructureList,n = n)
   
   #'Empirical estimation for extremal Chi and extremal Variogram
 
@@ -24,12 +24,10 @@ forestSimulationHR <- function(forestStructureList, n, p=0, k=NULL){
   #' why it doesn't have decimals????!!!!!
   empChiMat 
   
-  
   #' what is the good k?! null is the best.
   empVarioMat <- emp_vario(simulatedData, k=NULL, p) 
   empVarioMat                               
   
-
   #' Graph of Empirical estimations in dataframe format 
 
   #' store resultant MSF in the dataframe format each row: each edge's vertices
@@ -44,7 +42,6 @@ forestSimulationHR <- function(forestStructureList, n, p=0, k=NULL){
                                     SecondVertice = numeric(), 
                                     weight = numeric(), 
                                     stringsAsFactors=FALSE) 
-  
   
   # Dataframe of edges and corresponding weights
   e <- 1
