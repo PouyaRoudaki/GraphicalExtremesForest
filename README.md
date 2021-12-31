@@ -7,7 +7,9 @@ Independence and Graphical Models, and Measure Theory. The idea is based on the 
 provided in two published papers, and a contribution to the first paper.
 
 1 Engelke, Hitz; 2020; Graphical models for extremes.
+
 2 Engelke, Volgushev; 2020; Structure learning for extremal tree models.
+
 3 Strokorb, 2020; Extremal independence old and new.
 
 In the thesis, I am developing a new estimator to learn the underlying structure of disconnected
@@ -17,11 +19,14 @@ from (1) and (3). I extended the previous setting of Hüsler-Reiss distribution 
 connected graphs, to a new setting involving unconnected graphs. Specifically,
 
 • I showed that the new theoretical setting agrees with the classical setting of HüslerReiss distribution on connected graphs.
+
 • I provided an algorithm to estimate the underlying forest structure using the extremal
 correlations as weights. The aforementioned algorithm is a modified version of Kruskal
 algorithm. Using simulations and performance measurements, I illustrated that the
 algorithm works efficiently.
+
 • I proved the consistency of the estimator at the population level. I am currently
 evaluating the asymptotic properties of the estimator for finite samples by simulation.
+
 • I will also provide proofs of the estimator’s asymptotic performance and subsequently
 use the estimator on a real data set.
