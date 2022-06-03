@@ -1,27 +1,13 @@
 
 
-
-
-
-
-
-n <- 100
-#obs
-
-data <- cbind(sample(1:10,n,replace = T),
-      sample(1:10,n,replace = T),
-      sample(1:10,n,replace = T))
-blockSize <- 5
-
-
-
+# Auxillary function for finding the index of maximum value in every column
 maxFinder <- function(dataframe){
   # Find the maximum index in each column
   sapply(dataframe[,-1], which.max)
   
 }
 
-
+# Function for finding the empirical probability of extremes concurrence 
 empConcurrentExtremes <- function(data,blockSize){
   #start_time <- Sys.time()
   # required packages
@@ -78,4 +64,19 @@ empConcurrentExtremes <- function(data,blockSize){
   
 }
 
+
+# Example
+
+# Observations
+n <- 100
+
+# Data
+data <- cbind(sample(1:10,n,replace = T),
+      sample(1:10,n,replace = T),
+      sample(1:10,n,replace = T))
+
+# Block size
+blockSize <- 5
+
+# Example of using the function empConcurrentExtremes(data,blockSize)
 empCE <- empConcurrentExtremes(data,blockSize)
